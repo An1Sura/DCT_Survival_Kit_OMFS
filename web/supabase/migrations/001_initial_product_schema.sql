@@ -126,6 +126,16 @@ alter table public.progress enable row level security;
 alter table public.trust_settings enable row level security;
 alter table public.reported_issues enable row level security;
 
+drop policy if exists "Users can read own profile" on public.profiles;
+drop policy if exists "Users can update own profile name" on public.profiles;
+drop policy if exists "Authenticated users can read modules" on public.modules;
+drop policy if exists "Authenticated users can read toolkits" on public.toolkits;
+drop policy if exists "Users manage own bookmarks" on public.bookmarks;
+drop policy if exists "Users manage own progress" on public.progress;
+drop policy if exists "Users manage own trust settings" on public.trust_settings;
+drop policy if exists "Users create own reports" on public.reported_issues;
+drop policy if exists "Users read own reports" on public.reported_issues;
+
 create policy "Users can read own profile" on public.profiles for select using (auth.uid() = id);
 create policy "Users can update own profile name" on public.profiles for update using (auth.uid() = id);
 create policy "Authenticated users can read modules" on public.modules for select using (auth.role() = 'authenticated');
