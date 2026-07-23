@@ -1,6 +1,6 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { getAdminSupabase, getUserFromRequest } from "./_shared/supabase";
-import { getAppUrl, getStripe } from "./_shared/stripe";
+import { getAdminSupabase, getUserFromRequest } from "./_shared/supabase.js";
+import { getAppUrl, getStripe } from "./_shared/stripe.js";
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== "POST") {
