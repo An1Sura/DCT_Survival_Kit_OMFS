@@ -1,0 +1,57 @@
+import type { VercelRequest, VercelResponse } from "@vercel/node";
+import { getAdminSupabase, getUserFromRequest } from "./_shared/supabase";
+import { getAppUrl, getStripe } from "./_shared/stripe";
+
+export default async function handler(req: VercelRequest, res: VercelResponse) {
+  if (req.method !== "POST") {
+    res.status(405).json({ error: "Method not allowed" });
+    return;
+  }
+
+  try {
+    const user = await getUserFromRequest(new Request("https://local", { headers: req.headers as HeadersInit }));
+    if (!user) {
+      res.status(401).json({ error: "Authentication required" });
+      return;
+    }
+
+    if (!process.env.STRIPE_ANNUAL_PRICE_ID) {
+      res.status(503).json({ error: "STRIPE_ANNUAL_PRICE_ID is required" });
+      return;
+    }
+
+    const stripe = getStripe();
+    const supabase = getAdminSupabase();
+    const { data: profile } = await supabase
+      .from("profiles")
+      .select("stripe_customer_id")
+      .eq("id", user.id)
+      .maybeSingle();
+
+    let customerId = profile?.stripe_customer_id as string | undefined;
+
+    if (!customerId) {
+      const customer = await stripe.customers.create({
+        email: user.email || undefined,
+        metadata: { supabase_user_id: user.id },
+      });
+      customerId = customer.id;
+      await supabase.from("profiles").update({ stripe_customer_id: customerId }).eq("id", user.id);
+    }
+
+    const session = await stripe.checkout.sessions.create({
+      mode: "subscription",
+      customer: customerId,
+      line_items: [{ price: process.env.STRIPE_ANNUAL_PRICE_ID, quantity: 1 }],
+      success_url: `${getAppUrl()}/app/billing?checkout=success`,
+      cancel_url: `${getAppUrl()}/app/billing?checkout=cancelled`,
+      allow_promotion_codes: true,
+      metadata: { supabase_user_id: user.id },
+      subscription_data: { metadata: { supabase_user_id: user.id } },
+    });
+
+    res.status(200).json({ url: session.url });
+  } catch (error) {
+    res.status(500).json({ error: error instanceof Error ? error.message : "Checkout failed" });
+  }
+}

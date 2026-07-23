@@ -1,0 +1,158 @@
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400&family=Inter:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* DCT Survival Kit design system.
+   Palette derived from the clinical prototype:
+   forest green, clinical red, cream, warm card tones, gold accent.
+   All colors are HSL. */
+
+@layer base {
+  :root {
+    --background: 45 20% 97%;          /* cream #FAF9F6 */
+    --foreground: 80 8% 13%;           /* ink #22241F */
+
+    --card: 44 15% 93%;                /* card #F1EFEA */
+    --card-foreground: 80 8% 13%;
+
+    --popover: 45 25% 98%;
+    --popover-foreground: 80 8% 13%;
+
+    --primary: 140 16% 22%;            /* green-dark #2F4136 */
+    --primary-foreground: 45 33% 92%;
+
+    --secondary: 140 16% 28%;          /* green-mid #3C5346 */
+    --secondary-foreground: 45 33% 95%;
+
+    --muted: 44 14% 88%;
+    --muted-foreground: 90 4% 35%;     /* ink-soft #5B5D56 */
+
+    --accent: 38 46% 57%;              /* gold #C6A15B */
+    --accent-foreground: 80 12% 15%;
+
+    --destructive: 4 60% 41%;          /* red #A8332B */
+    --destructive-foreground: 45 33% 96%;
+
+    --success: 140 30% 32%;
+
+    --border: 40 15% 87%;              /* card-border #E4E1D9 */
+    --input: 40 12% 82%;
+    --ring: 140 16% 22%;
+
+    --radius: 0.625rem;
+
+    /* Brand tokens */
+    --green-dark: 140 16% 22%;
+    --green-mid: 140 16% 28%;
+    --red: 4 60% 41%;
+    --red-dark: 6 60% 34%;
+    --gold: 38 46% 57%;
+    --gold-ink: 36 48% 36%;
+
+    --sidebar-background: 140 16% 20%;
+    --sidebar-foreground: 45 20% 88%;
+    --sidebar-primary: 38 46% 57%;
+    --sidebar-primary-foreground: 140 20% 15%;
+    --sidebar-accent: 140 15% 27%;
+    --sidebar-accent-foreground: 45 25% 95%;
+    --sidebar-border: 140 12% 30%;
+    --sidebar-ring: 38 46% 57%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-feature-settings: "cv02", "cv03", "cv04";
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, .font-serif {
+    font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
+  }
+
+  /* Accessible, visible focus states (WCAG 2.2) */
+  :focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background: hsl(var(--accent) / 0.35);
+  }
+}
+
+@layer components {
+  .surface-card {
+    @apply bg-card border border-border rounded-lg;
+  }
+
+  .kicker {
+    @apply text-[11px] font-bold uppercase tracking-[0.14em] text-muted-foreground;
+  }
+
+  .hero-gradient {
+    background: linear-gradient(135deg, hsl(var(--green-dark)), hsl(var(--green-mid)));
+  }
+
+  .emergency-gradient {
+    background: linear-gradient(135deg, hsl(var(--red)), hsl(var(--red-dark)));
+  }
+
+  .input {
+    @apply h-11 w-full rounded-lg border border-input bg-card px-3 text-sm outline-none focus:ring-2 focus:ring-ring;
+  }
+  textarea.input {
+    @apply h-auto py-2;
+  }
+
+  /* thin scrollbars */
+  .thin-scroll::-webkit-scrollbar { width: 8px; height: 8px; }
+  .thin-scroll::-webkit-scrollbar-thumb { background: hsl(var(--border)); border-radius: 4px; }
+}
+
+@layer utilities {
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  .safe-top {
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+  .animate-in-up {
+    animation: inUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .animate-fade {
+    animation: fadeIn 0.3s ease both;
+  }
+}
+
+@keyframes inUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

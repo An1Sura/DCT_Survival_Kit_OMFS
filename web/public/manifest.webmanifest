@@ -1,0 +1,32 @@
+{
+  "name": "DCT Survival Kit",
+  "short_name": "DCT Kit",
+  "description": "Recognise. Assess. Escalate. A personal clinical reference and survival resource for OMFS Dental Core Trainees.",
+  "start_url": "/app",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#FAF9F6",
+  "theme_color": "#2F4136",
+  "categories": ["medical", "education", "productivity"],
+  "icons": [
+    {
+      "src": "/icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
