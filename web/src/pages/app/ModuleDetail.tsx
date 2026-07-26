@@ -65,7 +65,7 @@ export default function ModuleDetail() {
       </div>
 
       {/* Actions */}
-      <div className="sticky top-16 z-10 -mx-4 mt-4 flex gap-2 border-b border-border bg-background/90 px-4 py-3 backdrop-blur md:top-[68px]">
+      <div className="mt-4 flex flex-wrap gap-2 border-b border-border pb-3">
         <button
           onClick={() => toggleBookmark(module.id)}
           aria-pressed={bookmarked}
