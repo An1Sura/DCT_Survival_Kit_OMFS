@@ -30,7 +30,6 @@ export interface TrustSettings {
   airwayEquipmentLocation: string;
   antibioticPolicy: string;
   localPolicies: string;
-  localNotes: string;
 }
 
 export const EMPTY_TRUST: TrustSettings = {
@@ -46,7 +45,6 @@ export const EMPTY_TRUST: TrustSettings = {
   airwayEquipmentLocation: "",
   antibioticPolicy: "",
   localPolicies: "",
-  localNotes: "",
 };
 
 interface TrustValue {

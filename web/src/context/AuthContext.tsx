@@ -46,6 +46,7 @@ interface AuthValue {
 }
 
 const AuthContext = createContext<AuthValue | null>(null);
+const premiumTestEmail = import.meta.env.VITE_PREMIUM_TEST_EMAIL?.trim().toLowerCase();
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
@@ -76,13 +77,22 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       .eq("id", currentSession.user.id)
       .maybeSingle();
 
-    const roles = (profile?.roles as Role[] | null) ?? [];
-    const subscription = (profile?.subscription_status as SubscriptionStatus | null) ?? "none";
+    const email = profile?.email || currentSession.user.email || "";
+    const isPremiumTestUser = Boolean(premiumTestEmail && email.toLowerCase() === premiumTestEmail);
+    const subscription = isPremiumTestUser
+      ? "active"
+      : (profile?.subscription_status as SubscriptionStatus | null) ?? "none";
+    const roles = Array.from(
+      new Set([
+        ...((profile?.roles as Role[] | null) ?? []),
+        ...(isPremiumTestUser ? (["subscriber"] as Role[]) : []),
+      ]),
+    );
 
     setUser({
       id: currentSession.user.id,
       name: profile?.full_name || currentSession.user.user_metadata?.full_name || currentSession.user.email?.split("@")[0] || "",
-      email: profile?.email || currentSession.user.email || "",
+      email,
       emailVerified: Boolean(currentSession.user.email_confirmed_at),
       roles,
       subscription,

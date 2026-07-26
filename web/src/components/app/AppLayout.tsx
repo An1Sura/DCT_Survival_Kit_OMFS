@@ -4,6 +4,7 @@ import { AppSidebar } from "./AppSidebar";
 import { AppHeader } from "./AppHeader";
 import { BottomNav } from "./BottomNav";
 import { EmergencyFab } from "@/components/EmergencyFab";
+import { DisclaimerGate } from "@/components/app/DisclaimerGate";
 import { useAuth } from "@/context/AuthContext";
 import { cn } from "@/lib/utils";
 import { X } from "lucide-react";
@@ -11,6 +12,7 @@ import { X } from "lucide-react";
 export function AppLayout() {
   const { isAuthed, isSubscribed, loading } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [disclaimerAccepted, setDisclaimerAccepted] = useState(false);
 
   if (loading) {
     return <div className="flex min-h-screen items-center justify-center bg-background text-muted-foreground">Checking account...</div>;
@@ -20,7 +22,11 @@ export function AppLayout() {
     return <Navigate to="/login" replace />;
   }
 
-  if (!isSubscribed && window.location.pathname !== "/app/billing" && window.location.pathname !== "/app/account") {
+  if (!disclaimerAccepted) {
+    return <DisclaimerGate onAccept={() => setDisclaimerAccepted(true)} />;
+  }
+
+  if (!isSubscribed && window.location.pathname !== "/app/billing") {
     return <Navigate to="/app/billing" replace />;
   }
 

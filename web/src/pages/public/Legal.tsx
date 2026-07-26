@@ -21,9 +21,9 @@ const CONTENT: Record<
     intro:
       "Placeholder wording — this Privacy Policy requires drafting and review before launch. The first version is designed to collect as little personal data as possible.",
     sections: [
-      { h: "Data we collect", p: "Account basics (name, email) for authentication. Bookmarks, reading progress and your trust settings are stored on your device." },
+      { h: "Data we collect", p: "Account basics (name, email) for authentication. Bookmarks, reading progress and your trust settings are stored only to provide the app experience." },
       { h: "What we do NOT collect", p: "No patient data, no clinical-image uploads, no advertising trackers, no session-recording software, and no marketing pixels." },
-      { h: "Storage & sync", p: "In the first version, your notes, progress and trust settings are stored locally on your device. Any future account-based sync will be described here." },
+      { h: "Storage & sync", p: "Bookmarks, progress and trust settings can sync to your account so they survive device changes." },
       { h: "Your rights", p: "Under UK GDPR / DPA 2018 you have rights over your personal data. The process for exercising them will be documented here." },
       { h: "Payments", p: "Payment processing (Stripe) handles card data directly; card details are not stored by this app." },
     ],

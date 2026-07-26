@@ -1,4 +1,4 @@
-import { ArrowLeft, CreditCard, Check, ExternalLink, ShieldAlert } from "lucide-react";
+import { ArrowLeft, CreditCard, Check, ExternalLink, ShieldAlert, XCircle, LogOut } from "lucide-react";
 import { Link } from "react-router-dom";
 import { PageContainer, PageHeading } from "@/components/app/PageContainer";
 import { useAuth } from "@/context/AuthContext";
@@ -6,7 +6,7 @@ import { PRODUCT } from "@/data/meta";
 import { toast } from "sonner";
 
 export default function Billing() {
-  const { user, session, refreshUser } = useAuth();
+  const { user, session, refreshUser, logout } = useAuth();
   if (!user) return null;
 
   async function openStripe(path: "/api/stripe-checkout" | "/api/stripe-portal") {
@@ -81,15 +81,18 @@ export default function Billing() {
           </div>
 
           <div className="mt-6 border-t border-border pt-4">
-            <button onClick={() => openStripe("/api/stripe-portal")} className="text-sm font-semibold text-brand-green hover:underline">
-              Cancel, reactivate, or change plan in Stripe
+            <button onClick={() => openStripe("/api/stripe-portal")} className="inline-flex items-center gap-1.5 text-sm font-semibold text-destructive hover:underline">
+              <XCircle className="h-4 w-4" /> Cancel subscription
             </button>
             <button onClick={() => refreshUser()} className="ml-4 text-sm font-semibold text-muted-foreground hover:underline">
               Refresh subscription status
             </button>
+            <button onClick={logout} className="ml-4 inline-flex items-center gap-1.5 text-sm font-semibold text-muted-foreground hover:underline">
+              <LogOut className="h-4 w-4" /> Sign out
+            </button>
             <p className="mt-1 text-xs text-muted-foreground">
-              Access continues until the end of your paid year. Refund and
-              cancellation terms require final approval.
+              Cancellation opens Stripe's secure billing portal. Access normally
+              continues until the end of your paid year.
             </p>
           </div>
         </div>

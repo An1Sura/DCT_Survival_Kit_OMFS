@@ -22,8 +22,7 @@ const FIELDS: {
   { key: "airwayEquipmentLocation", label: "Emergency airway equipment location", placeholder: "e.g. Resus bay, theatre corridor…", type: "textarea", group: "Local information" },
   { key: "referralRoutes", label: "Local referral routes", placeholder: "How referrals reach OMFS, pathways…", type: "textarea", group: "Local information" },
   { key: "antibioticPolicy", label: "Local antibiotic policy", placeholder: "Paste or summarise your trust's guidance", type: "textarea", group: "Local information" },
-  { key: "localPolicies", label: "Local policies", placeholder: "Links or notes on local protocols", type: "textarea", group: "Local information" },
-  { key: "localNotes", label: "Personal notes", placeholder: "Anything else you want to hand — no patient data", type: "textarea", group: "Local information" },
+  { key: "localPolicies", label: "Local policies", placeholder: "Links to confirmed local protocols", type: "textarea", group: "Local information" },
 ];
 
 const GROUPS = ["Organisation", "Escalation contacts", "Local information"];

@@ -11,6 +11,7 @@ import { OfflineProvider } from "@/context/OfflineContext";
 
 import { AppLayout } from "@/components/app/AppLayout";
 import { ScrollToTop } from "@/components/ScrollToTop";
+import { CookieBanner } from "@/components/CookieBanner";
 
 // Public pages
 import Landing from "./pages/public/Landing";
@@ -95,6 +96,7 @@ const App = () => (
 
                   <Route path="*" element={<NotFound />} />
                 </Routes>
+                <CookieBanner />
               </BrowserRouter>
             </TooltipProvider>
           </LibraryProvider>

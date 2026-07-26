@@ -2,13 +2,13 @@ import { useNavigate, Link } from "react-router-dom";
 import { toast } from "sonner";
 import {
   User, Mail, BadgeCheck, CreditCard, WifiOff, FileWarning,
-  Wrench, LogOut, ShieldCheck, FileText, BookOpen,
+  Wrench, LogOut, ShieldCheck, FileText, BookOpen, Trash2,
 } from "lucide-react";
 import { PageContainer, PageHeading } from "@/components/app/PageContainer";
 import { useAuth } from "@/context/AuthContext";
 
 export default function Account() {
-  const { user, logout } = useAuth();
+  const { user, session, logout } = useAuth();
   const navigate = useNavigate();
 
   if (!user) return null;
@@ -20,6 +20,39 @@ export default function Account() {
     past_due: "Past due",
     none: "No subscription",
   };
+
+  async function deleteAllInfo() {
+    if (!session?.access_token) {
+      toast.error("Please sign in again before deleting data.");
+      return;
+    }
+
+    const confirmed = window.confirm(
+      "Delete your bookmarks, progress, Trust settings and issue-report records? This cannot be undone.",
+    );
+
+    if (!confirmed) return;
+
+    const response = await fetch("/api/delete-account-data", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${session.access_token}` },
+    });
+
+    if (!response.ok) {
+      const payload = await response.json().catch(() => ({}));
+      toast.error(payload.error || "Could not delete your data.");
+      return;
+    }
+
+    for (const key of Object.keys(window.localStorage)) {
+      if (key.startsWith("dct:")) {
+        window.localStorage.removeItem(key);
+      }
+    }
+
+    toast.success("Your app data has been deleted.");
+    window.location.reload();
+  }
 
   return (
     <PageContainer className="max-w-3xl">
@@ -88,6 +121,12 @@ export default function Account() {
         className="mt-8 inline-flex items-center gap-2 rounded-full border border-destructive/30 px-5 py-2.5 font-semibold text-destructive hover:bg-destructive/10"
       >
         <LogOut className="h-4 w-4" /> Sign out
+      </button>
+      <button
+        onClick={deleteAllInfo}
+        className="ml-3 mt-8 inline-flex items-center gap-2 rounded-full border border-destructive/30 px-5 py-2.5 font-semibold text-destructive hover:bg-destructive/10"
+      >
+        <Trash2 className="h-4 w-4" /> Delete all info
       </button>
     </PageContainer>
   );
