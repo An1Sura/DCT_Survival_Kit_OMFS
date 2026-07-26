@@ -5,11 +5,20 @@ import "./index.css";
 
 createRoot(document.getElementById("root")!).render(<App />);
 
-// Register the service worker for offline / PWA support.
+// Register offline support and refresh stale app code after deployments.
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
-    navigator.serviceWorker.register("/sw.js").catch(() => {
-      /* offline support is progressive enhancement — ignore failures */
-    });
+    navigator.serviceWorker
+      .register("/sw.js")
+      .then((registration) => {
+        void registration.update();
+      })
+      .catch(() => {
+        /* offline support is progressive enhancement - ignore failures */
+      });
+  });
+
+  navigator.serviceWorker.addEventListener("controllerchange", () => {
+    window.location.reload();
   });
 }

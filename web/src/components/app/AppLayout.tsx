@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Outlet, Navigate } from "react-router-dom";
+import { Outlet, Navigate, useLocation } from "react-router-dom";
 import { AppSidebar } from "./AppSidebar";
 import { AppHeader } from "./AppHeader";
 import { BottomNav } from "./BottomNav";
@@ -13,6 +13,8 @@ export function AppLayout() {
   const { isAuthed, isSubscribed, loading } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
   const [disclaimerAccepted, setDisclaimerAccepted] = useState(false);
+  const location = useLocation();
+  const requireSubscription = import.meta.env.VITE_REQUIRE_SUBSCRIPTION === "true";
 
   if (loading) {
     return <div className="flex min-h-screen items-center justify-center bg-background text-muted-foreground">Checking account...</div>;
@@ -26,7 +28,7 @@ export function AppLayout() {
     return <DisclaimerGate onAccept={() => setDisclaimerAccepted(true)} />;
   }
 
-  if (!isSubscribed && window.location.pathname !== "/app/billing") {
+  if (requireSubscription && !isSubscribed && location.pathname !== "/app/billing") {
     return <Navigate to="/app/billing" replace />;
   }
 

@@ -59,7 +59,7 @@ export default function Billing() {
         </div>
         <div className="p-6">
           <ul className="space-y-2 text-sm">
-            {["Full access to all modules & toolkits", "Offline PWA support", "Content updates for the year"].map((i) => (
+            {["Full access to all modules & toolkits", "Offline-ready access", "Content updates for the year"].map((i) => (
               <li key={i} className="flex items-center gap-2"><Check className="h-4 w-4 text-success" /> {i}</li>
             ))}
           </ul>

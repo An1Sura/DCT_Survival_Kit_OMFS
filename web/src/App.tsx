@@ -12,6 +12,7 @@ import { OfflineProvider } from "@/context/OfflineContext";
 import { AppLayout } from "@/components/app/AppLayout";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { CookieBanner } from "@/components/CookieBanner";
+import { ErrorBoundary } from "@/components/ErrorBoundary";
 
 // Public pages
 import Landing from "./pages/public/Landing";
@@ -57,46 +58,48 @@ const App = () => (
             <TooltipProvider>
               <Toaster richColors position="top-center" />
               <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-                <ScrollToTop />
-                <Routes>
-                  {/* Public marketing site */}
-                  <Route path="/" element={<Landing />} />
-                  <Route path="/features" element={<Features />} />
-                  <Route path="/pricing" element={<Pricing />} />
-                  <Route path="/about" element={<About />} />
-                  <Route path="/faq" element={<Faq />} />
-                  <Route path="/contact" element={<Contact />} />
-                  <Route path="/login" element={<Login />} />
-                  <Route path="/register" element={<Register />} />
-                  <Route path="/forgot-password" element={<ForgotPassword />} />
-                  <Route path="/terms" element={<Legal kind="terms" />} />
-                  <Route path="/privacy" element={<Legal kind="privacy" />} />
-                  <Route path="/legal-disclaimer" element={<Legal kind="disclaimer" />} />
-                  <Route path="/cookies" element={<Cookies />} />
+                <ErrorBoundary>
+                  <ScrollToTop />
+                  <Routes>
+                    {/* Public marketing site */}
+                    <Route path="/" element={<Landing />} />
+                    <Route path="/features" element={<Features />} />
+                    <Route path="/pricing" element={<Pricing />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/faq" element={<Faq />} />
+                    <Route path="/contact" element={<Contact />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/register" element={<Register />} />
+                    <Route path="/forgot-password" element={<ForgotPassword />} />
+                    <Route path="/terms" element={<Legal kind="terms" />} />
+                    <Route path="/privacy" element={<Legal kind="privacy" />} />
+                    <Route path="/legal-disclaimer" element={<Legal kind="disclaimer" />} />
+                    <Route path="/cookies" element={<Cookies />} />
 
-                  {/* Authenticated clinical application */}
-                  <Route path="/app" element={<AppLayout />}>
-                    <Route index element={<Dashboard />} />
-                    <Route path="modules" element={<Modules />} />
-                    <Route path="modules/:slug" element={<ModuleDetail />} />
-                    <Route path="toolkits" element={<Toolkits />} />
-                    <Route path="toolkits/:slug" element={<ToolkitDetail />} />
-                    <Route path="on-call" element={<OnCall />} />
-                    <Route path="search" element={<SearchPage />} />
-                    <Route path="bookmarks" element={<Bookmarks />} />
-                    <Route path="account" element={<Account />} />
-                    <Route path="billing" element={<Billing />} />
-                    <Route path="offline" element={<OfflineStatus />} />
-                    <Route path="disclaimer" element={<Disclaimer />} />
-                    <Route path="sources" element={<Sources />} />
-                    <Route path="report/clinical" element={<ReportClinical />} />
-                    <Route path="report/technical" element={<ReportTechnical />} />
-                    <Route path="admin" element={<Admin />} />
-                  </Route>
+                    {/* Authenticated clinical application */}
+                    <Route path="/app" element={<AppLayout />}>
+                      <Route index element={<Dashboard />} />
+                      <Route path="modules" element={<Modules />} />
+                      <Route path="modules/:slug" element={<ModuleDetail />} />
+                      <Route path="toolkits" element={<Toolkits />} />
+                      <Route path="toolkits/:slug" element={<ToolkitDetail />} />
+                      <Route path="on-call" element={<OnCall />} />
+                      <Route path="search" element={<SearchPage />} />
+                      <Route path="bookmarks" element={<Bookmarks />} />
+                      <Route path="account" element={<Account />} />
+                      <Route path="billing" element={<Billing />} />
+                      <Route path="offline" element={<OfflineStatus />} />
+                      <Route path="disclaimer" element={<Disclaimer />} />
+                      <Route path="sources" element={<Sources />} />
+                      <Route path="report/clinical" element={<ReportClinical />} />
+                      <Route path="report/technical" element={<ReportTechnical />} />
+                      <Route path="admin" element={<Admin />} />
+                    </Route>
 
-                  <Route path="*" element={<NotFound />} />
-                </Routes>
-                <CookieBanner />
+                    <Route path="*" element={<NotFound />} />
+                  </Routes>
+                  <CookieBanner />
+                </ErrorBoundary>
               </BrowserRouter>
             </TooltipProvider>
           </LibraryProvider>

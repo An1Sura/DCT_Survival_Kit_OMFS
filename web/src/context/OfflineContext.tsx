@@ -11,7 +11,7 @@ import { readJSON, writeJSON } from "@/lib/storage";
 import { PRODUCT } from "@/data/meta";
 
 /**
- * Offline / PWA status surface.
+ * Offline status surface.
  * Tracks network status, the downloaded content version, and last sync time.
  * The service worker (see public/sw.js) does the actual caching; this context
  * only reflects and controls status shown to the user.

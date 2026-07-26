@@ -28,7 +28,7 @@ const GROUPS = [
     items: [
       { icon: Bookmark, title: "Bookmarks & progress", desc: "Save modules and toolkits, mark them read, and pick up where you left off." },
       { icon: RefreshCw, title: "Account sync", desc: "Keep bookmarks and progress connected to your account across devices." },
-      { icon: WifiOff, title: "Offline-ready PWA", desc: "Install to your home screen; core emergency content stays available offline after first sync." },
+      { icon: WifiOff, title: "Offline-ready access", desc: "Core emergency content stays available offline after first sync." },
     ],
   },
   {

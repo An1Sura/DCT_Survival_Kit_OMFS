@@ -21,7 +21,7 @@ export default function Register() {
     try {
       await register(name, email, password);
       toast.success("Account created. Check your email if confirmation is required.");
-      navigate("/app/billing");
+      navigate("/app", { replace: true });
     } catch (error) {
       toast.error(error instanceof Error ? error.message : "Unable to create account.");
     } finally {
