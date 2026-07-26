@@ -25,7 +25,7 @@ const FAQS = [
   },
   {
     q: "Does it work offline?",
-    a: "Yes — it's an installable web app (PWA). After the first successful sync, core emergency content is designed to remain available offline, which matters when hospital signal is poor.",
+    a: "Yes. After the first successful sync, core emergency content is designed to remain available offline, which matters when hospital signal is poor.",
   },
   {
     q: "How much does it cost?",

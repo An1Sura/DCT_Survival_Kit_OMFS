@@ -1,15 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { toast } from "sonner";
 import { AuthShell } from "@/components/public/AuthShell";
 import { useAuth } from "@/context/AuthContext";
 
 export default function Login() {
-  const { login, sendMagicLink } = useAuth();
+  const { login, sendMagicLink, isAuthed, loading } = useAuth();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [busy, setBusy] = useState(false);
+
+  useEffect(() => {
+    if (!loading && isAuthed) {
+      navigate("/app", { replace: true });
+    }
+  }, [isAuthed, loading, navigate]);
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
@@ -18,7 +24,7 @@ export default function Login() {
     try {
       await login(email, password);
       toast.success("Signed in.");
-      navigate("/app");
+      navigate("/app", { replace: true });
     } catch (error) {
       toast.error(error instanceof Error ? error.message : "Unable to sign in.");
     } finally {

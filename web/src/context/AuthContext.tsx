@@ -115,9 +115,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const login = useCallback(async (email: string, password: string) => {
     if (!supabase) throw new Error("Supabase is not configured.");
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
     if (error) throw error;
-  }, []);
+    await loadUser(data.session);
+  }, [loadUser]);
 
   const register = useCallback(async (name: string, email: string, password: string) => {
     if (!supabase) throw new Error("Supabase is not configured.");
@@ -126,7 +127,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       password,
       options: {
         data: { full_name: name },
-        emailRedirectTo: getRedirectUrl("/app/billing"),
+        emailRedirectTo: getRedirectUrl("/app"),
       },
     });
     if (error) throw error;
@@ -136,7 +137,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     if (!supabase) throw new Error("Supabase is not configured.");
     const { error } = await supabase.auth.signInWithOtp({
       email,
-      options: { emailRedirectTo: getRedirectUrl("/app/billing") },
+      options: { emailRedirectTo: getRedirectUrl("/app") },
     });
     if (error) throw error;
   }, []);

@@ -84,7 +84,7 @@ export default function Landing() {
               </Link>
             </div>
             <p className="mt-4 text-sm text-white/60">
-              {PRODUCT.moduleCount} modules · {PRODUCT.toolkitCount} toolkits · installable web app
+              {PRODUCT.moduleCount} modules · {PRODUCT.toolkitCount} toolkits · offline-ready access
             </p>
           </div>
 

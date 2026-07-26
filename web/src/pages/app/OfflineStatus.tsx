@@ -16,7 +16,7 @@ export default function OfflineStatus() {
 
   return (
     <PageContainer className="max-w-2xl">
-      <PageHeading kicker="Offline & sync" title="Offline content" description="This app is an installable PWA. Core clinical and emergency content is designed to stay available offline after the first successful sync." />
+      <PageHeading kicker="Offline & sync" title="Offline content" description="Core clinical and emergency content is designed to stay available offline after the first successful sync." />
 
       {/* Connection */}
       <div className={`mb-4 flex items-center gap-4 rounded-xl border p-5 ${online ? "border-success/30 bg-success/[0.05]" : "border-brand-gold/40 bg-brand-gold/10"}`}>

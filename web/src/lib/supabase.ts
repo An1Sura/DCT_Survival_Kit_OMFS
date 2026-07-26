@@ -16,6 +16,6 @@ export const supabase = isSupabaseConfigured
     })
   : null;
 
-export function getRedirectUrl(path = "/app/billing") {
+export function getRedirectUrl(path = "/app") {
   return `${window.location.origin}${path}`;
 }

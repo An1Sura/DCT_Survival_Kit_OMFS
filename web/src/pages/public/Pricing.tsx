@@ -9,7 +9,7 @@ const INCLUDED = [
   "One-tap On-Call emergency mode",
   "Fast prioritised search",
   "Bookmarks, progress & recently viewed",
-  "Installable, offline-ready web app",
+  "Offline-ready access",
   "Content updates included for the year",
 ];
 
