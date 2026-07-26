@@ -42,8 +42,8 @@ const FEATURES = [
   },
   {
     icon: ShieldCheck,
-    title: "My Trust",
-    desc: "Store your local escalation contacts, referral routes and policies for instant recall.",
+    title: "Built responsibly",
+    desc: "Clear disclaimers, issue reporting and source information keep the kit accountable.",
   },
 ];
 

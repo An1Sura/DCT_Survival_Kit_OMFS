@@ -159,6 +159,7 @@ export function PublicLayout({ children }: { children: ReactNode }) {
               <li><Link to="/terms" className="hover:text-white">Terms</Link></li>
               <li><Link to="/privacy" className="hover:text-white">Privacy policy</Link></li>
               <li><Link to="/legal-disclaimer" className="hover:text-white">Disclaimer</Link></li>
+              <li><Link to="/cookies" className="hover:text-white">Cookies</Link></li>
             </ul>
           </div>
         </div>

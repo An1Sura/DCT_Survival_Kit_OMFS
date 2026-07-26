@@ -24,6 +24,7 @@ import Login from "./pages/public/Login";
 import Register from "./pages/public/Register";
 import ForgotPassword from "./pages/public/ForgotPassword";
 import Legal from "./pages/public/Legal";
+import Cookies from "./pages/public/Cookies";
 
 // App pages
 import Dashboard from "./pages/app/Dashboard";
@@ -34,7 +35,6 @@ import ToolkitDetail from "./pages/app/ToolkitDetail";
 import OnCall from "./pages/app/OnCall";
 import SearchPage from "./pages/app/SearchPage";
 import Bookmarks from "./pages/app/Bookmarks";
-import MyTrust from "./pages/app/MyTrust";
 import Account from "./pages/app/Account";
 import Billing from "./pages/app/Billing";
 import OfflineStatus from "./pages/app/OfflineStatus";
@@ -72,6 +72,7 @@ const App = () => (
                   <Route path="/terms" element={<Legal kind="terms" />} />
                   <Route path="/privacy" element={<Legal kind="privacy" />} />
                   <Route path="/legal-disclaimer" element={<Legal kind="disclaimer" />} />
+                  <Route path="/cookies" element={<Cookies />} />
 
                   {/* Authenticated clinical application */}
                   <Route path="/app" element={<AppLayout />}>
@@ -83,7 +84,6 @@ const App = () => (
                     <Route path="on-call" element={<OnCall />} />
                     <Route path="search" element={<SearchPage />} />
                     <Route path="bookmarks" element={<Bookmarks />} />
-                    <Route path="trust" element={<MyTrust />} />
                     <Route path="account" element={<Account />} />
                     <Route path="billing" element={<Billing />} />
                     <Route path="offline" element={<OfflineStatus />} />

@@ -161,9 +161,6 @@ export default function ToolkitDetail() {
                 <PhoneCall className="h-5 w-5" /> Escalation
               </h2>
               <p className="text-[15px] leading-relaxed">{toolkit.escalation}</p>
-              <Link to="/app/trust" className="mt-3 inline-block text-sm font-semibold text-brand-green hover:underline">
-                View your trust escalation contacts →
-              </Link>
             </div>
           )}
         </>
@@ -196,4 +193,3 @@ export default function ToolkitDetail() {
     </PageContainer>
   );
 }
-

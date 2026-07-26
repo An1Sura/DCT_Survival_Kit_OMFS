@@ -9,7 +9,6 @@ const INCLUDED = [
   "One-tap On-Call emergency mode",
   "Fast prioritised search",
   "Bookmarks, progress & recently viewed",
-  "My Trust local settings",
   "Installable, offline-ready web app",
   "Content updates included for the year",
 ];

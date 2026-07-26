@@ -37,9 +37,8 @@ export default function Disclaimer() {
           before acting.
         </Block>
         <Block icon={Building2} title="Local overrides">
-          Where you store your own trust's guidance in My Trust, you are
-          responsible for confirming its accuracy with your employing
-          organisation. Every trust has its own guidance.
+          Always confirm local pathways, contacts, doses and thresholds with
+          your employing organisation. Every trust has its own guidance.
         </Block>
         <Block icon={AlertTriangle} title="No patient data">
           Do not enter patient names, NHS numbers, dates of birth, clinical

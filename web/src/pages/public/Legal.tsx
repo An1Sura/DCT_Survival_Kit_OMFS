@@ -21,9 +21,9 @@ const CONTENT: Record<
     intro:
       "Placeholder wording — this Privacy Policy requires drafting and review before launch. The first version is designed to collect as little personal data as possible.",
     sections: [
-      { h: "Data we collect", p: "Account basics (name, email) for authentication. Bookmarks, reading progress and your trust settings are stored only to provide the app experience." },
+      { h: "Data we collect", p: "Account basics (name, email) for authentication. Bookmarks and reading progress are stored only to provide the app experience." },
       { h: "What we do NOT collect", p: "No patient data, no clinical-image uploads, no advertising trackers, no session-recording software, and no marketing pixels." },
-      { h: "Storage & sync", p: "Bookmarks, progress and trust settings can sync to your account so they survive device changes." },
+      { h: "Storage & sync", p: "Bookmarks and progress can sync to your account so they survive device changes." },
       { h: "Your rights", p: "Under UK GDPR / DPA 2018 you have rights over your personal data. The process for exercising them will be documented here." },
       { h: "Payments", p: "Payment processing (Stripe) handles card data directly; card details are not stored by this app." },
     ],
@@ -35,7 +35,7 @@ const CONTENT: Record<
       { h: "Educational aid only", p: "This product is a personal educational and revision aid for clinicians rotating through OMFS. It is not an institutionally endorsed clinical safety tool and is not a medical device." },
       { h: "Always escalate", p: "For any patient in front of you, senior clinical advice and local escalation pathways take precedence over anything shown here. If you are worried about a patient, escalate early." },
       { h: "Doses & thresholds", p: "Where doses or thresholds are shown (e.g. adrenaline, tranexamic acid, Sepsis 6), they reflect named guideline sources at the time of writing. Always confirm against the BNF and your local trust policy before acting." },
-      { h: "Local overrides", p: "Where you store your own trust's guidance in the app, you are responsible for confirming its accuracy with your employing organisation." },
+      { h: "Local overrides", p: "Always confirm any pathway, dose, threshold or contact route against your employing organisation's current policy." },
     ],
   },
 };

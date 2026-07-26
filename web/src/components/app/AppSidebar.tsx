@@ -6,7 +6,6 @@ import {
   Siren,
   Search,
   Bookmark,
-  Building2,
   User,
   Shield,
   FileText,
@@ -22,7 +21,6 @@ const NAV = [
   { to: "/app/on-call", label: "On-Call", icon: Siren, emergency: true },
   { to: "/app/search", label: "Search", icon: Search },
   { to: "/app/bookmarks", label: "Bookmarks", icon: Bookmark },
-  { to: "/app/trust", label: "My Trust", icon: Building2 },
   { to: "/app/account", label: "Account", icon: User },
 ];
 

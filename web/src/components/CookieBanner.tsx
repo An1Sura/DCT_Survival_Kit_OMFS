@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const cookieKey = "dct:cookie-ack";
 
@@ -18,16 +19,21 @@ export function CookieBanner() {
         We use essential cookies/local storage for sign-in, progress, billing handoff
         and app preferences. No advertising trackers.
       </p>
-      <button
-        type="button"
-        onClick={() => {
-          window.localStorage.setItem(cookieKey, "true");
-          setVisible(false);
-        }}
-        className="mt-3 rounded-full bg-brand-green px-4 py-2 text-xs font-semibold text-white hover:bg-brand-green-mid"
-      >
-        Got it
-      </button>
+      <div className="mt-3 flex items-center gap-3">
+        <button
+          type="button"
+          onClick={() => {
+            window.localStorage.setItem(cookieKey, "true");
+            setVisible(false);
+          }}
+          className="rounded-full bg-brand-green px-4 py-2 text-xs font-semibold text-white hover:bg-brand-green-mid"
+        >
+          Got it
+        </button>
+        <Link to="/cookies" className="text-xs font-semibold text-brand-green hover:underline">
+          Learn more
+        </Link>
+      </div>
     </aside>
   );
 }

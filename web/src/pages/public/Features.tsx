@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import {
   Siren, BookOpen, Wrench, Search, WifiOff, Bookmark,
-  Building2, ShieldCheck, ListChecks, FileText, Accessibility, ArrowRight,
+  RefreshCw, ShieldCheck, ListChecks, FileText, Accessibility, ArrowRight,
 } from "lucide-react";
 import { PublicLayout } from "@/components/public/PublicLayout";
 import { PageHeading } from "@/components/app/PageContainer";
@@ -27,7 +27,7 @@ const GROUPS = [
     title: "Your workspace",
     items: [
       { icon: Bookmark, title: "Bookmarks & progress", desc: "Save modules and toolkits, mark them read, and pick up where you left off." },
-      { icon: Building2, title: "My Trust", desc: "Store local escalation contacts, referral routes, airway-equipment location and policies." },
+      { icon: RefreshCw, title: "Account sync", desc: "Keep bookmarks and progress connected to your account across devices." },
       { icon: WifiOff, title: "Offline-ready PWA", desc: "Install to your home screen; core emergency content stays available offline after first sync." },
     ],
   },

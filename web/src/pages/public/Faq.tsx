@@ -37,7 +37,7 @@ const FAQS = [
   },
   {
     q: "How is my data handled?",
-    a: "The first version collects as little personal data as possible. Bookmarks, progress and your trust settings are stored on your device. There is no patient-data collection, no clinical-image uploads, and no advertising trackers.",
+    a: "The first version collects as little personal data as possible. Bookmarks and progress can sync to your account. There is no patient-data collection, no clinical-image uploads, and no advertising trackers.",
   },
   {
     q: "How do I report a clinical error?",

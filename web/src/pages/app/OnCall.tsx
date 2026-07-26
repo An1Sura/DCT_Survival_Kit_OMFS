@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import {
-  Siren, Search, PhoneCall, ChevronRight, WifiOff, AlertTriangle, Building2,
+  Siren, Search, PhoneCall, ChevronRight, WifiOff, AlertTriangle,
 } from "lucide-react";
 import { TOOLKITS, ONCALL_RED_TOOLKITS, getToolkitById } from "@/data/toolkits";
 import { MODULES } from "@/data/modules";
@@ -90,13 +90,13 @@ export default function OnCall() {
                 <div className="flex flex-col items-center rounded-xl border border-white/10 bg-white/[0.06] p-4 text-center text-white transition-colors hover:bg-white/10">
                   <span className="text-2xl">{e.icon}</span>
                   <span className="mt-2 text-sm font-semibold">{e.label}</span>
-                  <span className="mt-0.5 text-xs text-white/50">{number || "Add in My Trust"}</span>
+                  <span className="mt-0.5 text-xs text-white/50">{number || "Confirm locally"}</span>
                 </div>
               );
               return number ? (
                 <a key={e.label} href={`tel:${number.replace(/\s/g, "")}`}>{inner}</a>
               ) : (
-                <Link key={e.label} to="/app/trust">{inner}</Link>
+                <div key={e.label}>{inner}</div>
               );
             })}
           </div>
@@ -160,9 +160,6 @@ export default function OnCall() {
         </section>
 
         <div className="flex flex-col items-center gap-2 pt-4 text-center text-xs text-white/40">
-          <Link to="/app/trust" className="inline-flex items-center gap-1.5 text-white/60 hover:text-white">
-            <Building2 className="h-4 w-4" /> Set up your trust escalation contacts
-          </Link>
           <p>Offline-ready · {lastSync ? `last synced ${new Date(lastSync).toLocaleString()}` : "not yet synced"}</p>
           <p className="max-w-md">
             Educational aid only. Always confirm doses and pathways against local

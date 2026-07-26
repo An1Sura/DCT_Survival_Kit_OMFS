@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import {
   Siren, ArrowRight, Clock, Bookmark, WifiOff, RefreshCw,
-  Building2, ChevronRight, Sparkles,
+  ChevronRight, Sparkles,
 } from "lucide-react";
 import { PageContainer } from "@/components/app/PageContainer";
 import { DisclaimerBanner } from "@/components/DisclaimerBanner";
@@ -13,7 +13,6 @@ import { MODULES, getModuleById } from "@/data/modules";
 import { TOOLKITS, getToolkitById } from "@/data/toolkits";
 import { useAuth } from "@/context/AuthContext";
 import { useLibrary } from "@/context/LibraryContext";
-import { useTrust } from "@/context/TrustContext";
 import { useOffline } from "@/context/OfflineContext";
 
 function greeting(): string {
@@ -26,7 +25,6 @@ function greeting(): string {
 export default function Dashboard() {
   const { user } = useAuth();
   const { recent, bookmarks, read } = useLibrary();
-  const { trust, hasAny } = useTrust();
   const { online, contentVersion, lastSync } = useOffline();
 
   const firstName = user?.name?.split(" ")[0] ?? "Doctor";
@@ -118,12 +116,12 @@ export default function Dashboard() {
           </div>
           <ChevronRight className="ml-auto h-4 w-4 text-muted-foreground" />
         </Link>
-        <Link to="/app/trust" className="flex items-center gap-3 rounded-xl border border-border bg-card p-4 hover:border-brand-green/40">
-          <Building2 className="h-5 w-5 text-brand-green" />
+        <Link to="/app/bookmarks" className="flex items-center gap-3 rounded-xl border border-border bg-card p-4 hover:border-brand-green/40">
+          <Bookmark className="h-5 w-5 text-brand-green" />
           <div className="min-w-0">
-            <div className="text-sm font-semibold">My Trust</div>
+            <div className="text-sm font-semibold">Bookmarks</div>
             <div className="truncate text-xs text-muted-foreground">
-              {hasAny ? trust.hospitalName || trust.trustName || "Local settings saved" : "Add your local contacts"}
+              {bookmarks.length > 0 ? `${bookmarks.length} saved items` : "Save key modules and toolkits"}
             </div>
           </div>
           <ChevronRight className="ml-auto h-4 w-4 text-muted-foreground" />
