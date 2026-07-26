@@ -38,7 +38,8 @@ export function BottomNav() {
               <span
                 className={cn(
                   "flex h-8 w-8 items-center justify-center rounded-full transition-colors",
-                  isActive && t.emergency && "bg-destructive/12",
+                  t.emergency && "bg-destructive text-white shadow-sm shadow-destructive/25",
+                  isActive && t.emergency && "ring-2 ring-destructive/20 ring-offset-2 ring-offset-background",
                   isActive && !t.emergency && "bg-brand-green/12",
                 )}
               >
