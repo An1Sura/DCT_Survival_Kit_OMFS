@@ -34,10 +34,8 @@ export function AppLayout() {
   return (
     <div className="flex min-h-screen w-full max-w-full overflow-x-hidden bg-background">
       {/* Desktop sidebar */}
-      <aside className="hidden w-64 shrink-0 self-stretch bg-sidebar md:block">
-        <div className="sticky top-0 h-screen">
-          <AppSidebar />
-        </div>
+      <aside className="sticky top-0 hidden h-screen w-64 shrink-0 bg-sidebar md:block">
+        <AppSidebar />
       </aside>
 
       {/* Mobile drawer */}
