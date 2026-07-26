@@ -9,6 +9,8 @@ create table if not exists public.profiles (
   stripe_customer_id text unique,
   stripe_subscription_id text unique,
   subscription_current_period_end timestamptz,
+  active_session_id text,
+  active_session_at timestamptz,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );

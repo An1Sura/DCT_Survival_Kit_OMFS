@@ -47,6 +47,37 @@ interface AuthValue {
 
 const AuthContext = createContext<AuthValue | null>(null);
 const premiumTestEmail = import.meta.env.VITE_PREMIUM_TEST_EMAIL?.trim().toLowerCase();
+const clientSessionKey = "dct:client-session-id";
+
+function getClientSessionId() {
+  const existing = window.localStorage.getItem(clientSessionKey);
+  if (existing) return existing;
+
+  const next =
+    typeof crypto.randomUUID === "function"
+      ? crypto.randomUUID()
+      : `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+  window.localStorage.setItem(clientSessionKey, next);
+  return next;
+}
+
+async function claimActiveSession(accessToken: string) {
+  await fetch("/api/active-session", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ sessionId: getClientSessionId() }),
+  });
+}
+
+async function releaseActiveSession(accessToken: string) {
+  await fetch(`/api/active-session?sessionId=${encodeURIComponent(getClientSessionId())}`, {
+    method: "DELETE",
+    headers: { Authorization: `Bearer ${accessToken}` },
+  }).catch(() => {});
+}
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
@@ -70,6 +101,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setLoading(false);
       return;
     }
+
+    void claimActiveSession(currentSession.access_token).catch(() => {
+      /* Existing deployments without the migration should keep working. */
+    });
 
     const { data: profile } = await supabase
       .from("profiles")
@@ -113,6 +148,40 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return () => data.subscription.unsubscribe();
   }, [loadUser]);
 
+  useEffect(() => {
+    if (!supabase || !user || !session?.access_token) return;
+
+    let cancelled = false;
+
+    async function checkActiveSession() {
+      const { data, error } = await supabase
+        .from("profiles")
+        .select("active_session_id")
+        .eq("id", user!.id)
+        .maybeSingle();
+
+      if (cancelled || error) return;
+
+      const activeSessionId = data?.active_session_id;
+      if (activeSessionId && activeSessionId !== getClientSessionId()) {
+        await supabase!.auth.signOut();
+        setUser(null);
+        setSession(null);
+      }
+    }
+
+    const interval = window.setInterval(() => {
+      void checkActiveSession();
+    }, 15000);
+
+    void checkActiveSession();
+
+    return () => {
+      cancelled = true;
+      window.clearInterval(interval);
+    };
+  }, [user, session]);
+
   const login = useCallback(async (email: string, password: string) => {
     if (!supabase) throw new Error("Supabase is not configured.");
     const { data, error } = await supabase.auth.signInWithPassword({ email, password });
@@ -144,10 +213,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const logout = useCallback(async () => {
     if (!supabase) return;
+    if (session?.access_token) {
+      await releaseActiveSession(session.access_token);
+    }
     await supabase.auth.signOut();
     setUser(null);
     setSession(null);
-  }, []);
+  }, [session]);
 
   const updateUser = useCallback((patch: Partial<User>) => {
     setUser((prev) => (prev ? { ...prev, ...patch } : prev));
