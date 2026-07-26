@@ -128,8 +128,8 @@ export function PublicLayout({ children }: { children: ReactNode }) {
         <div className="mx-auto grid w-full max-w-7xl gap-8 px-4 py-12 md:grid-cols-4 md:px-6">
           <div>
             <div className="mb-2 flex items-center gap-2">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/10 font-serif font-bold text-white">
-                D
+              <span className="flex h-8 w-8 overflow-hidden rounded-lg bg-white/10">
+                <img src="/dct-logo.png" alt="" className="h-full w-full object-cover" />
               </span>
               <span className="font-serif text-lg font-semibold text-white">{PRODUCT.name}</span>
             </div>
