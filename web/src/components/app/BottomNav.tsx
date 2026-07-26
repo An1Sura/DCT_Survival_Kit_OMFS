@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { Home, BookOpen, Wrench, Siren, Search } from "lucide-react";
+import { Home, BookOpen, Wrench, Siren, Bookmark } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const TABS = [
@@ -7,7 +7,7 @@ const TABS = [
   { to: "/app/modules", label: "Modules", icon: BookOpen },
   { to: "/app/on-call", label: "On-Call", icon: Siren, emergency: true },
   { to: "/app/toolkits", label: "Toolkits", icon: Wrench },
-  { to: "/app/search", label: "Search", icon: Search },
+  { to: "/app/bookmarks", label: "Saved", icon: Bookmark },
 ];
 
 /** Mobile bottom navigation with large touch targets + safe-area spacing. */
