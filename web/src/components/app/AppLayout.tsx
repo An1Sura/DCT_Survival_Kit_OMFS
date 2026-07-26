@@ -3,7 +3,6 @@ import { Outlet, Navigate, useLocation } from "react-router-dom";
 import { AppSidebar } from "./AppSidebar";
 import { AppHeader } from "./AppHeader";
 import { BottomNav } from "./BottomNav";
-import { EmergencyFab } from "@/components/EmergencyFab";
 import { DisclaimerGate } from "@/components/app/DisclaimerGate";
 import { useAuth } from "@/context/AuthContext";
 import { cn } from "@/lib/utils";
@@ -67,7 +66,6 @@ export function AppLayout() {
           <Outlet />
         </main>
         <BottomNav />
-        <EmergencyFab />
       </div>
     </div>
   );

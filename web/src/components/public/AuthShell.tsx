@@ -20,7 +20,9 @@ export function AuthShell({
       <div className="hero-gradient relative hidden w-1/2 flex-col justify-between overflow-hidden p-12 text-white lg:flex">
         <div className="pointer-events-none absolute -right-20 top-1/3 h-80 w-80 rounded-full bg-brand-gold/10 blur-3xl" />
         <Link to="/" className="flex items-center gap-2.5">
-          <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/10 font-serif text-xl font-bold">D</span>
+          <span className="flex h-10 w-10 overflow-hidden rounded-lg bg-white/10">
+            <img src="/dct-logo.png" alt="" className="h-full w-full object-cover" />
+          </span>
           <span className="font-serif text-lg font-semibold">{PRODUCT.name}</span>
         </Link>
         <div>
@@ -41,7 +43,9 @@ export function AuthShell({
       <div className="flex w-full flex-col justify-center px-6 py-12 lg:w-1/2 lg:px-16">
         <div className="mx-auto w-full max-w-sm">
           <Link to="/" className="mb-8 flex items-center gap-2 lg:hidden">
-            <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-brand-green font-serif text-lg font-bold text-white">D</span>
+            <span className="flex h-9 w-9 overflow-hidden rounded-lg bg-brand-green">
+              <img src="/dct-logo.png" alt="" className="h-full w-full object-cover" />
+            </span>
             <span className="font-serif text-base font-semibold">{PRODUCT.name}</span>
           </Link>
           <h1 className="font-serif text-3xl font-semibold">{title}</h1>

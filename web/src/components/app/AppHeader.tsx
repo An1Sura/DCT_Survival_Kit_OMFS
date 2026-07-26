@@ -40,7 +40,7 @@ export function AppHeader({ onOpenMenu }: { onOpenMenu: () => void }) {
   }
 
   return (
-    <header className="safe-top sticky top-0 z-20 flex items-center gap-3 border-b border-border bg-background/90 px-4 py-3 backdrop-blur md:px-6">
+    <header className="safe-top sticky top-0 z-20 flex items-end gap-3 border-b border-border bg-background/90 px-4 pb-3 pt-5 backdrop-blur md:px-6 md:pb-4 md:pt-6">
       <button
         type="button"
         onClick={onOpenMenu}
@@ -50,7 +50,7 @@ export function AppHeader({ onOpenMenu }: { onOpenMenu: () => void }) {
         <Menu className="h-5 w-5" />
       </button>
 
-      <div ref={boxRef} className="relative flex-1 max-w-2xl">
+      <div ref={boxRef} className="relative max-w-2xl flex-1">
         <form onSubmit={submit}>
           <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
           <input
