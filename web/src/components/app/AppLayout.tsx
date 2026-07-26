@@ -32,7 +32,7 @@ export function AppLayout() {
   }
 
   return (
-    <div className="flex min-h-screen bg-background">
+    <div className="flex min-h-screen w-full max-w-full overflow-x-hidden bg-background">
       {/* Desktop sidebar */}
       <aside className="sticky top-0 hidden h-screen w-64 shrink-0 md:block">
         <AppSidebar />
@@ -60,9 +60,9 @@ export function AppLayout() {
         </div>
       )}
 
-      <div className={cn("flex min-w-0 flex-1 flex-col")}>
+      <div className={cn("flex min-w-0 max-w-full flex-1 flex-col overflow-x-hidden")}>
         <AppHeader onOpenMenu={() => setMenuOpen(true)} />
-        <main className="flex-1 pb-24 md:pb-8">
+        <main className="min-w-0 max-w-full flex-1 overflow-x-hidden pb-24 md:pb-8">
           <Outlet />
         </main>
         <BottomNav />

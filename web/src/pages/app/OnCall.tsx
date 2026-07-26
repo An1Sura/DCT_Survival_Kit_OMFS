@@ -32,11 +32,11 @@ export default function OnCall() {
   }, []);
 
   return (
-    <div className="min-h-full bg-[#1a120f] pb-24 md:pb-8">
+    <div className="min-h-full w-full max-w-full overflow-x-hidden bg-[#1a120f] pb-24 md:pb-8">
       {/* Emergency banner */}
-      <div className="emergency-gradient px-4 py-6 text-white md:px-8">
-        <div className="mx-auto max-w-5xl">
-          <div className="flex items-center gap-2">
+      <div className="emergency-gradient w-full max-w-full px-4 py-6 text-white md:px-8">
+        <div className="mx-auto w-full max-w-5xl">
+          <div className="flex flex-wrap items-center gap-2">
             <span className="inline-flex items-center gap-2 rounded-full bg-white/20 px-3 py-1 text-xs font-bold uppercase tracking-widest">
               <Siren className="h-3.5 w-3.5" /> On-Call Mode
             </span>
@@ -46,18 +46,22 @@ export default function OnCall() {
               </span>
             )}
           </div>
-          <h1 className="mt-3 font-serif text-3xl font-semibold md:text-4xl">Recognise. Assess. Escalate.</h1>
-          <p className="mt-1 text-white/80">Airway first. If you're worried, escalate early — that's good judgement.</p>
+          <h1 className="mt-3 max-w-full text-balance font-serif text-[2rem] font-semibold leading-[1.05] md:text-4xl">
+            Recognise. Assess. Escalate.
+          </h1>
+          <p className="mt-2 max-w-xl text-sm leading-relaxed text-white/80 sm:text-base">
+            Airway first. If you're worried, escalate early — that's good judgement.
+          </p>
 
           {/* Emergency search */}
-          <div className="relative mt-5 max-w-xl">
-            <Search className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-white/60" />
+          <div className="relative mt-5 w-full max-w-xl">
+            <Search className="pointer-events-none absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-white/60 sm:left-4" />
             <input
               value={q}
               onChange={(e) => setQ(e.target.value)}
               placeholder="Emergency search — e.g. airway, sepsis, bleeding…"
               aria-label="Emergency search"
-              className="h-14 w-full rounded-xl border-2 border-white/25 bg-black/20 pl-12 pr-4 text-base text-white placeholder:text-white/50 outline-none focus:border-white"
+              className="h-[52px] w-full min-w-0 rounded-xl border-2 border-white/25 bg-black/20 pl-10 pr-3 text-sm text-white placeholder:text-white/50 outline-none focus:border-white sm:h-14 sm:pl-12 sm:pr-4 sm:text-base"
             />
           </div>
 
@@ -79,18 +83,18 @@ export default function OnCall() {
         </div>
       </div>
 
-      <div className="mx-auto max-w-5xl space-y-8 px-4 py-6 md:px-8">
+      <div className="mx-auto w-full max-w-5xl space-y-8 px-4 py-6 md:px-8">
         {/* Escalation contacts */}
         <section>
           <SectionTitle icon={<PhoneCall className="h-4 w-4" />}>Escalation</SectionTitle>
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+          <div className="grid w-full grid-cols-1 gap-3 min-[380px]:grid-cols-2 sm:grid-cols-3 lg:grid-cols-5">
             {ESCALATION.map((e) => {
               const number = trust[e.key];
               const inner = (
-                <div className="flex flex-col items-center rounded-xl border border-white/10 bg-white/[0.06] p-4 text-center text-white transition-colors hover:bg-white/10">
+                <div className="flex min-w-0 flex-col items-center rounded-xl border border-white/10 bg-white/[0.06] p-4 text-center text-white transition-colors hover:bg-white/10">
                   <span className="text-2xl">{e.icon}</span>
                   <span className="mt-2 text-sm font-semibold">{e.label}</span>
-                  <span className="mt-0.5 text-xs text-white/50">{number || "Confirm locally"}</span>
+                  <span className="mt-0.5 max-w-full truncate text-xs text-white/50">{number || "Confirm locally"}</span>
                 </div>
               );
               return number ? (
@@ -110,14 +114,14 @@ export default function OnCall() {
               <Link
                 key={t.id}
                 to={`/app/toolkits/${t.slug}`}
-                className="emergency-gradient flex items-center gap-3 rounded-xl p-4 text-white transition-transform hover:scale-[1.01]"
+                className="emergency-gradient flex min-w-0 items-center gap-3 rounded-xl p-4 text-white transition-transform hover:scale-[1.01]"
               >
-                <span className="text-2xl">{t.icon}</span>
+                <span className="shrink-0 text-2xl">{t.icon}</span>
                 <div className="min-w-0 flex-1">
-                  <div className="font-serif text-lg font-semibold leading-tight">{t.title}</div>
+                  <div className="break-words font-serif text-lg font-semibold leading-tight">{t.title}</div>
                   <div className="truncate text-sm text-white/80">{t.introduction}</div>
                 </div>
-                <ChevronRight className="h-5 w-5 text-white/60" />
+                <ChevronRight className="h-5 w-5 shrink-0 text-white/60" />
               </Link>
             ))}
           </div>
@@ -150,7 +154,7 @@ export default function OnCall() {
               <Link
                 key={m.id}
                 to={`/app/modules/${m.slug}`}
-                className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.06] p-3.5 text-white hover:bg-white/10"
+                className="flex min-w-0 items-center gap-3 rounded-xl border border-white/10 bg-white/[0.06] p-3.5 text-white hover:bg-white/10"
               >
                 <span className="flex-1 truncate text-sm font-medium">{m.title}</span>
                 <ChevronRight className="h-4 w-4 text-white/40" />
@@ -173,7 +177,7 @@ export default function OnCall() {
 
 function SectionTitle({ icon, children }: { icon: React.ReactNode; children: React.ReactNode }) {
   return (
-    <h2 className="mb-3 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.14em] text-white/60">
+    <h2 className="mb-3 flex max-w-full items-center gap-2 break-words text-xs font-bold uppercase tracking-[0.14em] text-white/60">
       {icon} {children}
     </h2>
   );
