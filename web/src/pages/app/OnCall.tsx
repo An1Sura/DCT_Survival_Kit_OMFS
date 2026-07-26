@@ -1,7 +1,7 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
-  Siren, Search, PhoneCall, ChevronRight, WifiOff, AlertTriangle,
+  Siren, Search, PhoneCall, ChevronRight, WifiOff,
 } from "lucide-react";
 import { TOOLKITS, ONCALL_RED_TOOLKITS, getToolkitById } from "@/data/toolkits";
 import { MODULES } from "@/data/modules";
@@ -25,11 +25,6 @@ export default function OnCall() {
   const redToolkits = ONCALL_RED_TOOLKITS.map((id) => getToolkitById(id)!).filter(Boolean);
   const emergencyModules = MODULES.filter((m) => m.urgency === "Emergency");
   const results = q.trim().length >= 2 ? runSearch(q).slice(0, 8) : [];
-
-  const redFlags = useMemo(() => {
-    const rf = getToolkitById("T06");
-    return rf?.items ?? [];
-  }, []);
 
   return (
     <div className="min-h-full w-full max-w-full overflow-x-hidden bg-[#1a120f] pb-24 md:pb-8">
@@ -124,25 +119,6 @@ export default function OnCall() {
                 <ChevronRight className="h-5 w-5 shrink-0 text-white/60" />
               </Link>
             ))}
-          </div>
-        </section>
-
-        {/* Red flags */}
-        <section>
-          <SectionTitle icon={<AlertTriangle className="h-4 w-4" />}>Airway red flags — Ludwig's Angina</SectionTitle>
-          <div className="rounded-xl border border-white/10 bg-white/[0.06] p-5 text-white">
-            <p className="mb-3 text-sm text-white/70">Any positive finding = call anaesthetics + ENT now.</p>
-            <ul className="grid gap-2 sm:grid-cols-2">
-              {redFlags.map((rf, i) => (
-                <li key={i} className="flex items-start gap-2 text-sm">
-                  <span className="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-destructive" />
-                  {rf}
-                </li>
-              ))}
-            </ul>
-            <Link to="/app/toolkits/ludwig-s-angina-red-flags" className="mt-4 inline-block text-sm font-semibold text-brand-gold hover:underline">
-              Open full checklist →
-            </Link>
           </div>
         </section>
 
