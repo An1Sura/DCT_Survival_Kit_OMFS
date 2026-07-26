@@ -17,7 +17,7 @@ export function ModuleCard({ module }: ModuleCardProps) {
   return (
     <Link
       to={`/app/modules/${module.slug}`}
-      className="group relative flex flex-col rounded-xl border border-border bg-card p-4 transition-all hover:border-brand-green/40 hover:shadow-[0_8px_24px_-12px_rgba(47,65,54,0.4)] focus-visible:ring-2 focus-visible:ring-ring"
+      className="group relative flex min-w-0 flex-col overflow-hidden rounded-xl border border-border bg-card p-4 transition-all hover:border-brand-green/40 hover:shadow-[0_8px_24px_-12px_rgba(47,65,54,0.4)] focus-visible:ring-2 focus-visible:ring-ring"
     >
       <div className="mb-2 flex items-start justify-between gap-2">
         <span className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground">
@@ -40,7 +40,7 @@ export function ModuleCard({ module }: ModuleCardProps) {
           )}
         </button>
       </div>
-      <h3 className="font-serif text-lg font-semibold leading-tight text-foreground">
+      <h3 className="break-words font-serif text-lg font-semibold leading-tight text-foreground">
         {module.title}
       </h3>
       {module.quote && (
@@ -48,7 +48,7 @@ export function ModuleCard({ module }: ModuleCardProps) {
           {module.quote}
         </p>
       )}
-      <div className="mt-auto flex items-center gap-2 pt-3">
+      <div className="mt-auto flex min-w-0 items-center gap-2 pt-3">
         <UrgencyBadge urgency={module.urgency} />
         {read && (
           <span className="inline-flex items-center gap-1 rounded-full bg-success/12 px-2 py-0.5 text-[11px] font-semibold text-success">
@@ -68,7 +68,7 @@ export function ToolkitCard({ toolkit }: { toolkit: Toolkit }) {
   return (
     <Link
       to={`/app/toolkits/${toolkit.slug}`}
-      className="group relative flex flex-col rounded-xl border border-border bg-card p-4 transition-all hover:border-brand-green/40 hover:shadow-[0_8px_24px_-12px_rgba(47,65,54,0.4)] focus-visible:ring-2 focus-visible:ring-ring"
+      className="group relative flex min-w-0 flex-col overflow-hidden rounded-xl border border-border bg-card p-4 transition-all hover:border-brand-green/40 hover:shadow-[0_8px_24px_-12px_rgba(47,65,54,0.4)] focus-visible:ring-2 focus-visible:ring-ring"
     >
       <div className="mb-2 flex items-start justify-between gap-2">
         <span className="text-2xl leading-none" aria-hidden>
@@ -91,13 +91,13 @@ export function ToolkitCard({ toolkit }: { toolkit: Toolkit }) {
           )}
         </button>
       </div>
-      <h3 className="font-serif text-base font-semibold leading-tight text-foreground">
+      <h3 className="break-words font-serif text-base font-semibold leading-tight text-foreground">
         {toolkit.title}
       </h3>
-      <p className="mt-1 line-clamp-2 text-sm text-muted-foreground">
+      <p className="mt-1 line-clamp-2 break-words text-sm text-muted-foreground">
         {toolkit.introduction}
       </p>
-      <div className="mt-auto flex items-center gap-2 pt-3">
+      <div className="mt-auto flex min-w-0 items-center gap-2 pt-3">
         <span
           className={cn(
             "rounded-full border border-border bg-muted px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-muted-foreground",

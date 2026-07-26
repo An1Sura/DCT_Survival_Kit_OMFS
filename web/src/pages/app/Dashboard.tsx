@@ -105,8 +105,8 @@ export default function Dashboard() {
       </section>
 
       {/* Status strip */}
-      <div className="mb-8 grid gap-3 sm:grid-cols-3">
-        <Link to="/app/offline" className="flex items-center gap-3 rounded-xl border border-border bg-card p-4 hover:border-brand-green/40">
+      <div className="mb-8 grid min-w-0 gap-3 md:grid-cols-2 xl:grid-cols-3">
+        <Link to="/app/offline" className="flex min-w-0 items-center gap-3 rounded-xl border border-border bg-card p-4 hover:border-brand-green/40">
           {online ? <RefreshCw className="h-5 w-5 text-success" /> : <WifiOff className="h-5 w-5 text-brand-gold-ink" />}
           <div className="min-w-0">
             <div className="text-sm font-semibold">{online ? "Online" : "Offline"}</div>
@@ -116,7 +116,7 @@ export default function Dashboard() {
           </div>
           <ChevronRight className="ml-auto h-4 w-4 text-muted-foreground" />
         </Link>
-        <Link to="/app/bookmarks" className="flex items-center gap-3 rounded-xl border border-border bg-card p-4 hover:border-brand-green/40">
+        <Link to="/app/bookmarks" className="flex min-w-0 items-center gap-3 rounded-xl border border-border bg-card p-4 hover:border-brand-green/40">
           <Bookmark className="h-5 w-5 text-brand-green" />
           <div className="min-w-0">
             <div className="text-sm font-semibold">Bookmarks</div>
@@ -126,7 +126,7 @@ export default function Dashboard() {
           </div>
           <ChevronRight className="ml-auto h-4 w-4 text-muted-foreground" />
         </Link>
-        <div className="flex items-center gap-3 rounded-xl border border-border bg-card p-4">
+        <div className="flex min-w-0 items-center gap-3 rounded-xl border border-border bg-card p-4">
           <Sparkles className="h-5 w-5 text-brand-gold-ink" />
           <div className="min-w-0">
             <div className="text-sm font-semibold">What's new</div>
@@ -139,14 +139,14 @@ export default function Dashboard() {
 
       {/* Categories */}
       <SectionHeader title="Module categories" href="/app/modules" />
-      <div className="mb-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mb-8 grid min-w-0 gap-4 sm:grid-cols-2 xl:grid-cols-4">
         {CATEGORIES.map((c) => {
           const count = MODULES.filter((m) => m.category === c.key).length;
           return (
             <Link
               key={c.key}
               to={`/app/modules?cat=${encodeURIComponent(c.key)}`}
-              className={`group rounded-xl border bg-card p-5 transition-all hover:shadow-[0_8px_24px_-12px_rgba(47,65,54,0.4)] ${
+              className={`group min-w-0 rounded-xl border bg-card p-5 transition-all hover:shadow-[0_8px_24px_-12px_rgba(47,65,54,0.4)] ${
                 c.emergency ? "border-destructive/40" : "border-border hover:border-brand-green/40"
               }`}
             >
@@ -160,7 +160,7 @@ export default function Dashboard() {
 
       {/* Rapid toolkits */}
       <SectionHeader title="Rapid-access toolkits" href="/app/toolkits" />
-      <div className="mb-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mb-8 grid min-w-0 gap-4 sm:grid-cols-2 xl:grid-cols-4">
         {quickToolkits.map((t) => (
           <ToolkitCard key={t.id} toolkit={t} />
         ))}
@@ -170,7 +170,7 @@ export default function Dashboard() {
       {recentItems.length > 0 && (
         <>
           <SectionHeader title="Recently viewed" href="/app/bookmarks" />
-          <div className="mb-8 grid gap-3 sm:grid-cols-2">
+          <div className="mb-8 grid min-w-0 gap-3 xl:grid-cols-2">
             {recentItems.map((r) => {
               const mod = r.kind === "module" ? getModuleById(r.id) : null;
               const tk = r.kind === "toolkit" ? getToolkitById(r.id) : null;
@@ -178,7 +178,7 @@ export default function Dashboard() {
               const to = mod ? `/app/modules/${mod.slug}` : `/app/toolkits/${tk?.slug}`;
               const urgency = mod?.urgency ?? tk?.urgency;
               return (
-                <Link key={r.id} to={to} className="flex items-center gap-3 rounded-xl border border-border bg-card p-4 hover:border-brand-green/40">
+                <Link key={r.id} to={to} className="flex min-w-0 items-center gap-3 rounded-xl border border-border bg-card p-4 hover:border-brand-green/40">
                   <span className="rounded px-1.5 py-0.5 text-[10px] font-bold uppercase text-muted-foreground bg-muted">
                     {r.kind}
                   </span>
@@ -195,7 +195,7 @@ export default function Dashboard() {
       {bookmarkedModules.length > 0 && (
         <>
           <SectionHeader title="Your bookmarks" href="/app/bookmarks" />
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid min-w-0 gap-4 sm:grid-cols-2 xl:grid-cols-3">
             {bookmarkedModules.map((m) => (
               <ModuleCard key={m.id} module={m} />
             ))}
@@ -208,9 +208,9 @@ export default function Dashboard() {
 
 function SectionHeader({ title, href }: { title: string; href: string }) {
   return (
-    <div className="mb-3 flex items-center justify-between">
-      <h2 className="font-serif text-xl font-semibold">{title}</h2>
-      <Link to={href} className="inline-flex items-center gap-1 text-sm font-semibold text-brand-green hover:underline">
+    <div className="mb-3 flex min-w-0 items-center justify-between gap-4">
+      <h2 className="min-w-0 font-serif text-xl font-semibold">{title}</h2>
+      <Link to={href} className="inline-flex shrink-0 items-center gap-1 text-sm font-semibold text-brand-green hover:underline">
         View all <ArrowRight className="h-3.5 w-3.5" />
       </Link>
     </div>

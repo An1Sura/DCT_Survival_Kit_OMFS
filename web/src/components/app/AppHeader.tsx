@@ -40,7 +40,7 @@ export function AppHeader({ onOpenMenu }: { onOpenMenu: () => void }) {
   }
 
   return (
-    <header className="safe-top sticky top-0 z-20 flex items-end gap-3 border-b border-border bg-background/90 px-4 pb-3 pt-5 backdrop-blur md:px-6 md:pb-4 md:pt-6">
+    <header className="safe-top sticky top-0 z-20 flex w-full max-w-full items-end gap-3 overflow-x-clip border-b border-border bg-background/90 px-4 pb-3 pt-5 backdrop-blur md:px-6 md:pb-4 md:pt-6">
       <button
         type="button"
         onClick={onOpenMenu}
@@ -50,7 +50,7 @@ export function AppHeader({ onOpenMenu }: { onOpenMenu: () => void }) {
         <Menu className="h-5 w-5" />
       </button>
 
-      <div ref={boxRef} className="relative max-w-2xl flex-1">
+      <div ref={boxRef} className="relative min-w-0 flex-1">
         <form onSubmit={submit}>
           <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
           <input
@@ -114,7 +114,7 @@ export function AppHeader({ onOpenMenu }: { onOpenMenu: () => void }) {
 
       <Link
         to="/app/on-call"
-        className="emergency-gradient hidden items-center gap-2 rounded-full px-4 py-2 text-sm font-bold uppercase tracking-wide text-white shadow-sm transition-transform hover:scale-105 md:flex"
+        className="emergency-gradient hidden shrink-0 items-center gap-2 rounded-full px-4 py-2 text-sm font-bold uppercase tracking-wide text-white shadow-sm transition-transform hover:scale-105 md:flex"
       >
         <Siren className="h-4 w-4" /> On-Call
       </Link>
