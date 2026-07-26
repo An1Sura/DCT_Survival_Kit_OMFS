@@ -134,19 +134,19 @@ export default function ToolkitDetail() {
                       onClick={() => toggleChecklistItem(toolkit.id, i)}
                       aria-pressed={on}
                       className={cn(
-                        "flex w-full items-start gap-3 rounded-lg border p-3.5 text-left transition-colors",
-                        on ? "border-brand-green/40 bg-brand-green/[0.06]" : "border-border bg-card hover:bg-muted/60",
+                        "flex w-full items-start gap-3 rounded-xl border p-3.5 text-left shadow-sm transition-all",
+                        on ? "border-brand-green/45 bg-brand-green/[0.08]" : "border-border bg-card hover:border-brand-green/30 hover:bg-muted/60",
                       )}
                     >
                       <span
                         className={cn(
-                          "mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded border-2",
-                          on ? "border-brand-green bg-brand-green text-white" : "border-muted-foreground/40",
+                          "mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-md border-2 shadow-sm transition-colors",
+                          on ? "border-brand-green bg-brand-green text-white" : "border-brand-green/30 bg-background text-transparent",
                         )}
                       >
-                        {on && <Check className="h-3.5 w-3.5" />}
+                        <Check className="h-4 w-4 stroke-[3]" />
                       </span>
-                      <span className={cn("text-[15px]", on && "text-muted-foreground line-through")}>{item}</span>
+                      <span className={cn("min-w-0 text-[15px] leading-relaxed", on && "text-muted-foreground line-through")}>{item}</span>
                     </button>
                   );
                 })}

@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { Check } from "lucide-react";
 
 /**
  * Renders a single clinical item verbatim.
@@ -23,28 +24,53 @@ export function ClinicalItem({ text }: { text: string }) {
         <p className="mb-1 font-semibold text-foreground">{first}</p>
       )}
       {body.map((line, i) => {
-        const isCheck = line.startsWith("□");
+        const hasCheck = line.includes("□");
         return (
-          <p
-            key={i}
-            className={cn(
-              "text-[15px] leading-relaxed text-foreground/85",
-              isCheck && "flex gap-2 pl-1",
-            )}
-          >
-            {isCheck ? (
-              <>
-                <span className="mt-0.5 select-none text-muted-foreground" aria-hidden>
-                  ☐
-                </span>
-                <span>{line.replace(/^□\s*/, "")}</span>
-              </>
-            ) : (
-              line
-            )}
-          </p>
+          hasCheck ? (
+            <ChecklistText key={i} line={line} />
+          ) : (
+            <p key={i} className="text-[15px] leading-relaxed text-foreground/85">
+              {line}
+            </p>
+          )
         );
       })}
+    </div>
+  );
+}
+
+function ChecklistText({ line }: { line: string }) {
+  const [intro, ...rawItems] = line.split("□");
+  const items = rawItems
+    .map((item) => item.trim().replace(/^,/, "").replace(/,$/, "").trim())
+    .filter(Boolean);
+
+  return (
+    <div className="my-2 space-y-2">
+      {intro.trim() && (
+        <p className="text-[15px] leading-relaxed text-foreground/85">
+          {intro.trim()}
+        </p>
+      )}
+      <div className="space-y-2">
+        {items.map((item, index) => (
+          <div
+            key={`${item}-${index}`}
+            className="flex gap-3 rounded-lg border border-border/80 bg-background/55 px-3 py-2.5 text-[15px] leading-relaxed text-foreground/85 shadow-sm"
+          >
+            <span
+              className={cn(
+                "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-md border-2",
+                "border-brand-green/35 bg-brand-green/5 text-brand-green",
+              )}
+              aria-hidden
+            >
+              <Check className="h-3.5 w-3.5 opacity-45" />
+            </span>
+            <span className="min-w-0">{item}</span>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

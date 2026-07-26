@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { toast } from "sonner";
 import { AuthShell } from "@/components/public/AuthShell";
+import { Checkbox } from "@/components/ui/checkbox";
 import { useAuth } from "@/context/AuthContext";
 import { PRODUCT } from "@/data/meta";
 
@@ -78,12 +79,11 @@ export default function Register() {
             className="h-11 w-full rounded-lg border border-input bg-background px-3 text-sm outline-none focus:ring-2 focus:ring-ring"
           />
         </div>
-        <label className="flex items-start gap-2.5 text-sm text-muted-foreground">
-          <input
-            type="checkbox"
+        <label className="flex items-start gap-3 rounded-lg border border-border bg-card/60 p-3 text-sm text-muted-foreground">
+          <Checkbox
             checked={agree}
-            onChange={(e) => setAgree(e.target.checked)}
-            className="mt-0.5 h-4 w-4 accent-brand-green"
+            onCheckedChange={(checked) => setAgree(checked === true)}
+            className="mt-0.5"
           />
           <span>
             I understand this is an educational aid and not a substitute for

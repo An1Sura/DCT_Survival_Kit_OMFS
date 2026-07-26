@@ -3,6 +3,7 @@ import { useLocation, Link } from "react-router-dom";
 import { toast } from "sonner";
 import { ArrowLeft, FileWarning, AlertTriangle, Send, CheckCircle2 } from "lucide-react";
 import { PageContainer, PageHeading } from "@/components/app/PageContainer";
+import { Checkbox } from "@/components/ui/checkbox";
 import { MODULES } from "@/data/modules";
 import { TOOLKITS } from "@/data/toolkits";
 import { PRODUCT } from "@/data/meta";
@@ -120,8 +121,12 @@ export default function ReportClinical() {
         <Field label="Description">
           <textarea value={description} onChange={(e) => setDescription(e.target.value)} required rows={5} placeholder="Describe the issue and, if possible, the correct guidance and its source." className="input" />
         </Field>
-        <label className="flex items-start gap-2.5 text-sm text-muted-foreground">
-          <input type="checkbox" checked={contactOk} onChange={(e) => setContactOk(e.target.checked)} className="mt-0.5 h-4 w-4 accent-brand-green" />
+        <label className="flex items-start gap-3 rounded-lg border border-border bg-card/60 p-3 text-sm text-muted-foreground">
+          <Checkbox
+            checked={contactOk}
+            onCheckedChange={(checked) => setContactOk(checked === true)}
+            className="mt-0.5"
+          />
           I'm happy to be contacted about this report if clarification is needed.
         </label>
         <button type="submit" className="inline-flex items-center gap-2 rounded-full bg-brand-green px-6 py-3 font-semibold text-white hover:bg-brand-green-mid">
