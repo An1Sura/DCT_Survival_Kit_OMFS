@@ -21,7 +21,7 @@ export function AuthShell({
         <div className="pointer-events-none absolute -right-20 top-1/3 h-80 w-80 rounded-full bg-brand-gold/10 blur-3xl" />
         <Link to="/" className="flex items-center gap-2.5">
           <span className="flex h-10 w-10 overflow-hidden rounded-lg bg-white/10">
-            <img src="/dct-logo-icon.png" alt="" className="h-full w-full object-cover" />
+            <img src="/dct-logo.png" alt="" className="h-full w-full object-cover" />
           </span>
           <span className="font-serif text-lg font-semibold">{PRODUCT.name}</span>
         </Link>
@@ -44,7 +44,7 @@ export function AuthShell({
         <div className="mx-auto w-full max-w-sm">
           <Link to="/" className="mb-8 flex items-center gap-2 lg:hidden">
             <span className="flex h-9 w-9 overflow-hidden rounded-lg bg-brand-green">
-              <img src="/dct-logo-icon.png" alt="" className="h-full w-full object-cover" />
+              <img src="/dct-logo.png" alt="" className="h-full w-full object-cover" />
             </span>
             <span className="font-serif text-base font-semibold">{PRODUCT.name}</span>
           </Link>

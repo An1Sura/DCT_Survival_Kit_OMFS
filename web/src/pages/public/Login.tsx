@@ -5,7 +5,7 @@ import { AuthShell } from "@/components/public/AuthShell";
 import { useAuth } from "@/context/AuthContext";
 
 export default function Login() {
-  const { login, sendMagicLink, isAuthed, loading } = useAuth();
+  const { login, isAuthed, loading } = useAuth();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -27,23 +27,6 @@ export default function Login() {
       navigate("/app", { replace: true });
     } catch (error) {
       toast.error(error instanceof Error ? error.message : "Unable to sign in.");
-    } finally {
-      setBusy(false);
-    }
-  }
-
-  async function magicLink() {
-    if (!email) {
-      toast.error("Enter your email first.");
-      return;
-    }
-
-    setBusy(true);
-    try {
-      await sendMagicLink(email);
-      toast.success("Magic link sent. Check your email.");
-    } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Unable to send magic link.");
     } finally {
       setBusy(false);
     }
@@ -98,14 +81,6 @@ export default function Login() {
           className="h-11 w-full rounded-full bg-brand-green font-semibold text-white transition-transform hover:scale-[1.01]"
         >
           {busy ? "Please wait..." : "Sign in"}
-        </button>
-        <button
-          type="button"
-          disabled={busy}
-          onClick={magicLink}
-          className="h-11 w-full rounded-full border border-border font-semibold text-foreground transition-colors hover:bg-muted disabled:opacity-50"
-        >
-          Email me a magic link
         </button>
         <p className="text-center text-xs text-muted-foreground">
           Access is verified through Supabase and subscription status is updated

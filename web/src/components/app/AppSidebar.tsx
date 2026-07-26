@@ -33,8 +33,8 @@ export function AppSidebar({ onNavigate }: { onNavigate?: () => void }) {
         onClick={onNavigate}
         className="mb-4 flex items-center gap-2 px-2"
       >
-        <span className="flex h-11 w-11 overflow-hidden rounded-xl border border-brand-gold/50 bg-[#143627] shadow-sm">
-          <img src="/dct-logo-icon.png" alt="" className="h-full w-full object-cover" />
+        <span className="flex h-10 w-10 overflow-hidden rounded-lg border border-white/10 bg-sidebar-primary">
+          <img src="/dct-logo.png" alt="" className="h-full w-full object-cover" />
         </span>
         <div className="leading-tight">
           <div className="font-serif text-base font-semibold text-white">

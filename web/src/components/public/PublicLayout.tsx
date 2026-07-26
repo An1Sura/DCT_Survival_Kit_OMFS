@@ -23,7 +23,7 @@ export function PublicLayout({ children }: { children: ReactNode }) {
         <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-4 py-3 md:px-6">
           <Link to="/" className="flex items-center gap-2.5">
             <span className="flex h-9 w-9 overflow-hidden rounded-lg bg-brand-green">
-              <img src="/dct-logo-icon.png" alt="" className="h-full w-full object-cover" />
+              <img src="/dct-logo.png" alt="" className="h-full w-full object-cover" />
             </span>
             <div className="leading-tight">
               <div className="font-serif text-base font-semibold">{PRODUCT.name}</div>
