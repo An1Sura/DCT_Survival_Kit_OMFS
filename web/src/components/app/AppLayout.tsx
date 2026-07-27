@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 import { X } from "lucide-react";
 
 export function AppLayout() {
-  const { isAuthed, isSubscribed, loading } = useAuth();
+  const { isAuthed, isSubscribed, isAdmin, loading } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
   const [disclaimerAccepted, setDisclaimerAccepted] = useState(false);
   const location = useLocation();
@@ -27,7 +27,7 @@ export function AppLayout() {
     return <DisclaimerGate onAccept={() => setDisclaimerAccepted(true)} />;
   }
 
-  if (requireSubscription && !isSubscribed && location.pathname !== "/app/billing") {
+  if (requireSubscription && !isSubscribed && !isAdmin && location.pathname !== "/app/billing") {
     return <Navigate to="/app/billing" replace />;
   }
 
