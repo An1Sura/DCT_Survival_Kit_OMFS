@@ -8,6 +8,8 @@ import { toast } from "sonner";
 export default function Billing() {
   const { user, session, refreshUser, logout } = useAuth();
   if (!user) return null;
+  const hasStripeCustomer = Boolean(user.stripeCustomerId);
+  const hasPaidSubscription = user.subscription === "active" || user.subscription === "trialing";
 
   async function openStripe(path: "/api/stripe-checkout" | "/api/stripe-portal") {
     if (!session?.access_token) {
@@ -66,24 +68,28 @@ export default function Billing() {
 
           <div className="mt-6 flex flex-wrap gap-3">
             <button
-              onClick={() => openStripe(user.subscription === "active" || user.subscription === "trialing" ? "/api/stripe-portal" : "/api/stripe-checkout")}
+              onClick={() => openStripe(hasPaidSubscription && hasStripeCustomer ? "/api/stripe-portal" : "/api/stripe-checkout")}
               className="inline-flex items-center gap-2 rounded-full bg-brand-green px-5 py-2.5 text-sm font-semibold text-white hover:bg-brand-green-mid"
             >
               <ExternalLink className="h-4 w-4" />
-              {user.subscription === "active" || user.subscription === "trialing" ? "Open billing portal" : `Subscribe — ${PRODUCT.priceLabel}`}
+              {hasPaidSubscription && hasStripeCustomer ? "Open billing portal" : `Subscribe — ${PRODUCT.priceLabel}`}
             </button>
-            <button
-              onClick={() => openStripe("/api/stripe-portal")}
-              className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm font-semibold hover:bg-muted"
-            >
-              <CreditCard className="h-4 w-4" /> Update payment method
-            </button>
+            {hasStripeCustomer && (
+              <button
+                onClick={() => openStripe("/api/stripe-portal")}
+                className="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm font-semibold hover:bg-muted"
+              >
+                <CreditCard className="h-4 w-4" /> Update payment method
+              </button>
+            )}
           </div>
 
           <div className="mt-6 border-t border-border pt-4">
-            <button onClick={() => openStripe("/api/stripe-portal")} className="inline-flex items-center gap-1.5 text-sm font-semibold text-destructive hover:underline">
-              <XCircle className="h-4 w-4" /> Cancel subscription
-            </button>
+            {hasStripeCustomer && (
+              <button onClick={() => openStripe("/api/stripe-portal")} className="inline-flex items-center gap-1.5 text-sm font-semibold text-destructive hover:underline">
+                <XCircle className="h-4 w-4" /> Cancel subscription
+              </button>
+            )}
             <button onClick={() => refreshUser()} className="ml-4 text-sm font-semibold text-muted-foreground hover:underline">
               Refresh subscription status
             </button>
