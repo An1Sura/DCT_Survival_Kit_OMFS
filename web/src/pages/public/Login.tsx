@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useLocation } from "react-router-dom";
 import { toast } from "sonner";
 import { AuthShell } from "@/components/public/AuthShell";
 import { useAuth } from "@/context/AuthContext";
@@ -7,6 +7,8 @@ import { useAuth } from "@/context/AuthContext";
 export default function Login() {
   const { login, isAuthed, loading } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+  const state = location.state as { checkEmail?: boolean; email?: string } | null;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [busy, setBusy] = useState(false);
@@ -46,6 +48,12 @@ export default function Login() {
       }
     >
       <form onSubmit={submit} className="space-y-4">
+        {state?.checkEmail && (
+          <div className="rounded-lg border border-brand-gold/40 bg-brand-gold/10 p-3 text-sm text-brand-gold-ink">
+            Check your email{state.email ? ` at ${state.email}` : ""} to confirm
+            your account, then come back here to sign in.
+          </div>
+        )}
         <div>
           <label htmlFor="email" className="mb-1.5 block text-sm font-medium">Email</label>
           <input
