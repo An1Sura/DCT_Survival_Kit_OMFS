@@ -15,7 +15,7 @@ export default function Login() {
 
   useEffect(() => {
     if (!loading && isAuthed) {
-      navigate("/app", { replace: true });
+      navigate("/app/billing", { replace: true });
     }
   }, [isAuthed, loading, navigate]);
 
@@ -26,7 +26,7 @@ export default function Login() {
     try {
       await login(email, password);
       toast.success("Signed in.");
-      navigate("/app", { replace: true });
+      navigate("/app/billing", { replace: true });
     } catch (error) {
       toast.error(error instanceof Error ? error.message : "Unable to sign in.");
     } finally {
