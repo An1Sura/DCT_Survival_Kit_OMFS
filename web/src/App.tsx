@@ -78,7 +78,7 @@ const App = () => (
 
                     {/* Authenticated clinical application */}
                     <Route path="/app" element={<AppLayout />}>
-                      <Route index element={<Billing />} />
+                      <Route index element={<Dashboard />} />
                       <Route path="modules" element={<Modules />} />
                       <Route path="modules/:slug" element={<ModuleDetail />} />
                       <Route path="toolkits" element={<Toolkits />} />
