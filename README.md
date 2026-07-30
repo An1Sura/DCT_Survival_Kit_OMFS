@@ -41,7 +41,7 @@ npm run db:seed
 
 ## Stripe Setup
 
-1. Create a recurring annual GBP price for £60.
+1. Create a recurring annual GBP price for £20.
 2. Set `STRIPE_ANNUAL_PRICE_ID`.
 3. Configure a webhook to `https://dctsurvivalkit.co.uk/api/stripe-webhook`.
 4. Subscribe to:

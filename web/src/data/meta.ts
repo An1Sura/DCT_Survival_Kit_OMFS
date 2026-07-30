@@ -4,8 +4,8 @@ import type { Category, Urgency } from "./types";
 export const PRODUCT = {
   name: "DCT Survival Kit",
   tagline: "Recognise. Assess. Escalate.",
-  priceLabel: "£60 / year",
-  priceAmount: 60,
+  priceLabel: "£20 / year",
+  priceAmount: 20,
   currency: "GBP",
   clinicalAuthor: {
     name: "Vyomesh Bhatt",

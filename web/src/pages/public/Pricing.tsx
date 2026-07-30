@@ -37,8 +37,8 @@ export default function Pricing() {
             <div className="text-sm font-semibold uppercase tracking-widest text-white/70">
               Annual subscription
             </div>
-            <div className="mt-2 font-serif text-5xl font-semibold">£60</div>
-            <div className="mt-1 text-white/70">per year · £5 / month equivalent</div>
+            <div className="mt-2 font-serif text-5xl font-semibold">£20</div>
+            <div className="mt-1 text-white/70">per year · £1.67 / month equivalent</div>
           </div>
           <div className="p-8">
             <ul className="space-y-3">
