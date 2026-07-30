@@ -5,7 +5,7 @@ import "./index.css";
 
 createRoot(document.getElementById("root")!).render(<App />);
 
-// Register offline support and refresh stale app code after deployments.
+// Register offline support. Avoid forced reloads during auth/payment flows.
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
     navigator.serviceWorker
@@ -16,9 +16,5 @@ if ("serviceWorker" in navigator) {
       .catch(() => {
         /* offline support is progressive enhancement - ignore failures */
       });
-  });
-
-  navigator.serviceWorker.addEventListener("controllerchange", () => {
-    window.location.reload();
   });
 }
