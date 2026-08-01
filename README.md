@@ -83,4 +83,4 @@ Point DNS to Vercel using the records Vercel gives for the project. Set `APP_URL
 - Clinical review and sign-off remain required for content marked `Needs clinical review`.
 - Legal review is still required for terms, privacy policy, disclaimer, refund/cancellation wording, and clinical risk language.
 - Production Supabase, Stripe, Vercel, and DNS dashboard settings must stay configured outside the repo. Do not commit secrets.
-- The Rork SPA still includes fallback bundled content for offline/PWA use. For strict server-only content protection, move module/toolkit reads fully behind authenticated API endpoints before launch.
+- The app still includes fallback bundled content for offline/PWA use. For strict server-only content protection, move module/toolkit reads fully behind authenticated API endpoints before launch.
